@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: riwimedicare
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d riwimedicare']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [medicare]
+  api:
+    build: .
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://postgres:postgres@db:5432/riwimedicare
+      JWT_SECRET: ${JWT_SECRET:-local-docker-secret-change-me}
+      DB_SYNC: 'true'
+    ports: ['3000:3000']
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [medicare]
+volumes:
+  postgres_data:
+networks:
+  medicare:
+    driver: bridge
