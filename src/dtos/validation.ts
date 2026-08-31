@@ -33,6 +33,14 @@ export function readNonNegativeInteger(data: InputRecord, field: string): number
   return value;
 }
 
+export function readPositiveIntegerParam(value: unknown, field = 'id'): number {
+  const parsed = typeof value === 'string' && /^\d+$/.test(value) ? Number(value) : NaN;
+  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
+    throw new AppError(400, `${field} must be a positive integer`);
+  }
+  return parsed;
+}
+
 export function isEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
