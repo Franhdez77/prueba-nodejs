@@ -1,41 +1,23 @@
 import { Router } from 'express';
-import multer from 'multer';
-import { uploadSeed } from '../controllers/SeedController';
+import { loadSeed } from '../controllers/SeedController';
 import { asyncHandler } from '../errors/errorMiddleware';
 import { authorize } from '../middlewares/authMiddleware';
 
 const seedRoutes = Router();
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: { fileSize: 2 * 1024 * 1024 },
-  fileFilter: (_req, file, callback) =>
-    callback(null, file.mimetype === 'application/json' || file.originalname.endsWith('.json')),
-});
 
 /**
  * @swagger
- * /api/seed/upload:
+ * /api/seed/load:
  *   post:
  *     tags: [Seed]
- *     summary: Cargar datos iniciales desde un archivo JSON
- *     description: Importación transaccional exclusiva para ADMIN. Evita duplicados por claves únicas.
+ *     summary: Load the project's seed data
+ *     description: ADMIN-only transactional import from seed.example.json. No file upload is required.
  *     security: [{ bearerAuth: [] }]
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             required: [file]
- *             properties:
- *               file:
- *                 type: string
- *                 format: binary
- *                 description: Archivo JSON de máximo 2 MB
  *     responses:
- *       201: { description: Datos importados correctamente }
- *       400: { description: Archivo ausente, inválido o con estructura incorrecta }
+ *       201: { description: Data imported successfully }
+ *       400: { description: The project seed data has an invalid structure }
  *       403: { $ref: '#/components/responses/Forbidden' }
+ *       500: { description: The project seed file could not be read or parsed }
  */
-seedRoutes.post('/upload', authorize('ADMIN'), upload.single('file'), asyncHandler(uploadSeed));
+seedRoutes.post('/load', authorize('ADMIN'), asyncHandler(loadSeed));
 export default seedRoutes;

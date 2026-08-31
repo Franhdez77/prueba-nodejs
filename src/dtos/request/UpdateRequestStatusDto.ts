@@ -15,6 +15,12 @@ export interface UpdateRequestStatusDto {
   status: RequestStatus;
 }
 
+/**
+ * Validates that a request body contains a supported workflow status.
+ * @param input Unknown request payload.
+ * @returns The validated target status.
+ * @throws {AppError} If the status is not supported.
+ */
 export function validateUpdateRequestStatus(input: unknown): UpdateRequestStatusDto {
   const data = readObject(input);
   if (typeof data.status !== 'string' || !statuses.includes(data.status as RequestStatus)) {

@@ -6,6 +6,12 @@ export interface LoginDto {
   password: string;
 }
 
+/**
+ * Validates and normalizes an authentication request body.
+ * @param input Unknown request payload.
+ * @returns Validated login credentials with a normalized email.
+ * @throws {AppError} If a required credential is missing or invalid.
+ */
 export function validateLogin(input: unknown): LoginDto {
   const data = readObject(input);
   const email = readString(data, 'email').toLowerCase();

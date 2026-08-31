@@ -1,23 +1,25 @@
 import swaggerJsdoc from 'swagger-jsdoc';
+import path from 'path';
+import { env } from '../config/env';
 
-/** Especificación OpenAPI generada desde los bloques JSDoc ubicados junto a las rutas. */
+/** OpenAPI specification generated from the JSDoc blocks located beside the routes. */
 export const swaggerSpec = swaggerJsdoc({
   definition: {
     openapi: '3.0.3',
     info: {
       title: 'RiwiMediCare Plus API',
       version: '1.0.0',
-      description: 'API REST para gestionar clínicas, inventario y solicitudes de abastecimiento.',
+      description: 'REST API for managing clinics, inventory, and supply requests.',
     },
-    servers: [{ url: 'http://localhost:3000', description: 'Servidor local' }],
+    servers: [{ url: `http://localhost:${env.port}`, description: 'Local server' }],
     tags: [
-      { name: 'Auth', description: 'Registro e inicio de sesión' },
-      { name: 'Clinics', description: 'Administración de clínicas' },
-      { name: 'Warehouses', description: 'Administración de almacenes' },
-      { name: 'Medicines', description: 'Administración de medicamentos' },
-      { name: 'Inventory', description: 'Existencias por almacén y medicamento' },
-      { name: 'Supply requests', description: 'Solicitudes de abastecimiento' },
-      { name: 'Seed', description: 'Carga inicial de datos JSON' },
+      { name: 'Auth', description: 'Registration and login' },
+      { name: 'Clinics', description: 'Clinic management' },
+      { name: 'Warehouses', description: 'Warehouse management' },
+      { name: 'Medicines', description: 'Medicine management' },
+      { name: 'Inventory', description: 'Stock by warehouse and medicine' },
+      { name: 'Supply requests', description: 'Medicine supply requests' },
+      { name: 'Seed', description: 'Initial JSON data import' },
     ],
     components: {
       securitySchemes: {
@@ -107,19 +109,19 @@ export const swaggerSpec = swaggerJsdoc({
       },
       responses: {
         Unauthorized: {
-          description: 'Token ausente, inválido o vencido',
+          description: 'Missing, invalid, or expired token',
           content: { 'application/json': { schema: { $ref: '#/components/schemas/Error' } } },
         },
         Forbidden: {
-          description: 'El rol no tiene permisos para realizar la operación',
+          description: 'The role is not allowed to perform this operation',
           content: { 'application/json': { schema: { $ref: '#/components/schemas/Error' } } },
         },
         NotFound: {
-          description: 'Recurso no encontrado',
+          description: 'Resource not found',
           content: { 'application/json': { schema: { $ref: '#/components/schemas/Error' } } },
         },
       },
     },
   },
-  apis: ['./src/routes/*.ts'],
+  apis: [path.join(__dirname, '../routes/*.{ts,js}')],
 });

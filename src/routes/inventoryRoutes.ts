@@ -10,18 +10,18 @@ const inventoryRoutes = Router();
  * /api/inventory:
  *   get:
  *     tags: [Inventory]
- *     summary: Consultar el inventario disponible
+ *     summary: List available inventory
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Inventario con almacenes y medicamentos asociados
+ *         description: Inventory with associated warehouses and medicines
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
  *   put:
  *     tags: [Inventory]
- *     summary: Crear o actualizar existencias
- *     description: Operación exclusiva del administrador.
+ *     summary: Create or update inventory
+ *     description: Administrator-only operation.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -32,9 +32,9 @@ const inventoryRoutes = Router();
  *             $ref: '#/components/schemas/InventoryInput'
  *     responses:
  *       200:
- *         description: Inventario actualizado
+ *         description: Inventory updated
  *       201:
- *         description: Inventario creado
+ *         description: Inventory created
  *       403:
  *         $ref: '#/components/responses/Forbidden'
  *       404:

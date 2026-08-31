@@ -14,6 +14,13 @@ function optionalString(
   output[field] = readString(data, field, minimum);
 }
 
+/**
+ * Validates a complete or partial clinic payload.
+ * @param input Unknown request payload.
+ * @param partial Whether omitted fields are accepted for an update.
+ * @returns Normalized clinic fields.
+ * @throws {AppError} If a required field is missing or invalid.
+ */
 export const validateClinic: ResourceValidator = (input, partial = false) => {
   const data = readObject(input);
   const output: InputRecord = {};
@@ -27,6 +34,13 @@ export const validateClinic: ResourceValidator = (input, partial = false) => {
   return output;
 };
 
+/**
+ * Validates a complete or partial warehouse payload.
+ * @param input Unknown request payload.
+ * @param partial Whether omitted fields are accepted for an update.
+ * @returns Normalized warehouse fields.
+ * @throws {AppError} If a required field is missing or invalid.
+ */
 export const validateWarehouse: ResourceValidator = (input, partial = false) => {
   const data = readObject(input);
   const output: InputRecord = {};
@@ -37,6 +51,13 @@ export const validateWarehouse: ResourceValidator = (input, partial = false) => 
   return output;
 };
 
+/**
+ * Validates a complete or partial medicine payload.
+ * @param input Unknown request payload.
+ * @param partial Whether omitted fields are accepted for an update.
+ * @returns Normalized medicine fields.
+ * @throws {AppError} If a required field is missing or invalid.
+ */
 export const validateMedicine: ResourceValidator = (input, partial = false) => {
   const data = readObject(input);
   const output: InputRecord = {};

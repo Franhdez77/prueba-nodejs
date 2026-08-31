@@ -1,11 +1,13 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
+/** Stock quantity for one medicine in one warehouse. */
 export interface InventoryAttributes {
   id: number;
   warehouseId: number;
   medicineId: number;
   quantity: number;
 }
+/** Sequelize model mapped to the `inventories` table. */
 export class Inventory
   extends Model<InventoryAttributes, Optional<InventoryAttributes, 'id'>>
   implements InventoryAttributes

@@ -1,11 +1,13 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
 import { BaseAttributes } from './types';
+/** Persistent attributes of a medicine catalog entry. */
 export interface MedicineAttributes extends BaseAttributes {
   name: string;
   sku: string;
   description: string;
 }
+/** Sequelize model mapped to the `medicines` table. */
 export class Medicine
   extends Model<MedicineAttributes, Optional<MedicineAttributes, 'id' | 'active'>>
   implements MedicineAttributes

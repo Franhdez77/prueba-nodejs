@@ -9,6 +9,12 @@ export interface RegisterDto {
   role: Role;
 }
 
+/**
+ * Validates and normalizes a user registration request body.
+ * @param input Unknown request payload.
+ * @returns Validated registration data with a normalized email.
+ * @throws {AppError} If any required field or role is invalid.
+ */
 export function validateRegister(input: unknown): RegisterDto {
   const data = readObject(input);
   const name = readString(data, 'name', 2);

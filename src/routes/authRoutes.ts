@@ -10,8 +10,8 @@ const controller = new AuthController();
  * /api/auth/register:
  *   post:
  *     tags: [Auth]
- *     summary: Registrar un usuario
- *     description: Ruta pública. Permite elegir el rol ADMIN o MANAGER.
+ *     summary: Register a user
+ *     description: Public route that accepts either the ADMIN or MANAGER role.
  *     requestBody:
  *       required: true
  *       content:
@@ -20,11 +20,11 @@ const controller = new AuthController();
  *             $ref: '#/components/schemas/RegisterInput'
  *     responses:
  *       201:
- *         description: Usuario registrado
+ *         description: User registered
  *       400:
- *         description: Datos inválidos
+ *         description: Invalid input
  *       409:
- *         description: El correo ya está registrado
+ *         description: Email is already registered
  */
 authRoutes.post('/register', asyncHandler(controller.register));
 
@@ -33,7 +33,7 @@ authRoutes.post('/register', asyncHandler(controller.register));
  * /api/auth/login:
  *   post:
  *     tags: [Auth]
- *     summary: Iniciar sesión
+ *     summary: Log in
  *     requestBody:
  *       required: true
  *       content:
@@ -42,14 +42,14 @@ authRoutes.post('/register', asyncHandler(controller.register));
  *             $ref: '#/components/schemas/LoginInput'
  *     responses:
  *       200:
- *         description: Autenticación correcta
+ *         description: Authentication succeeded
  *         content:
  *           application/json:
  *             example:
  *               token: eyJhbGciOiJIUzI1NiJ9...
  *               user: { id: 1, name: Administrador Riwi, email: admin@riwi.io, role: ADMIN }
  *       401:
- *         description: Credenciales inválidas
+ *         description: Invalid credentials
  */
 authRoutes.post('/login', asyncHandler(controller.login));
 

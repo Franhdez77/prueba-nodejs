@@ -2,6 +2,7 @@ import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
 import { BaseAttributes } from './types';
 
+/** Persistent attributes of a healthcare clinic. */
 export interface ClinicAttributes extends BaseAttributes {
   name: string;
   nit: string;
@@ -10,6 +11,7 @@ export interface ClinicAttributes extends BaseAttributes {
   responsiblePhone: string;
 }
 
+/** Sequelize model mapped to the `clinics` table. */
 export class Clinic
   extends Model<ClinicAttributes, Optional<ClinicAttributes, 'id' | 'active'>>
   implements ClinicAttributes

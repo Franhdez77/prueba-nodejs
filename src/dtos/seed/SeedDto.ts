@@ -51,6 +51,12 @@ function readArray(data: InputRecord, field: string): unknown[] {
   return value;
 }
 
+/**
+ * Validates and normalizes every supported collection in a seed document.
+ * @param input Parsed JSON value from the uploaded seed file.
+ * @returns A validated seed document ready for persistence.
+ * @throws {AppError} If a collection or nested record has an invalid structure.
+ */
 export function validateSeed(input: unknown): SeedDto {
   const data = readObject(input);
   const users = readArray(data, 'users').map((item) => {

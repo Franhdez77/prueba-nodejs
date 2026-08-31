@@ -6,6 +6,12 @@ export interface UpsertInventoryDto {
   quantity: number;
 }
 
+/**
+ * Validates the identifiers and quantity required to upsert inventory.
+ * @param input Unknown request payload.
+ * @returns Validated inventory data.
+ * @throws {AppError} If an identifier or quantity is invalid.
+ */
 export function validateUpsertInventory(input: unknown): UpsertInventoryDto {
   const data = readObject(input);
   return {

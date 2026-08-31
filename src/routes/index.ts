@@ -21,7 +21,7 @@ router.use('/requests', supplyRequestRoutes);
  * /api/clinics/{clinicId}/requests:
  *   get:
  *     tags: [Supply requests]
- *     summary: Consultar el historial de solicitudes de una clínica
+ *     summary: List supply request history for a clinic
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - in: path
@@ -29,8 +29,8 @@ router.use('/requests', supplyRequestRoutes);
  *         required: true
  *         schema: { type: integer }
  *     responses:
- *       200: { description: Historial de la clínica }
- *       404: { description: Clínica no encontrada }
+ *       200: { description: Clinic request history }
+ *       404: { description: Clinic not found }
  */
 router.get('/clinics/:clinicId/requests', asyncHandler(history));
 

@@ -10,6 +10,12 @@ export interface CreateSupplyRequestDto {
   status?: RequestStatus;
 }
 
+/**
+ * Validates a new supply request and enforces its initial PENDING status.
+ * @param input Unknown request payload.
+ * @returns Validated supply request data.
+ * @throws {AppError} If a field is invalid or the initial status is not PENDING.
+ */
 export function validateCreateSupplyRequest(input: unknown): CreateSupplyRequestDto {
   const data = readObject(input);
   if (data.status !== undefined && data.status !== 'PENDING') {

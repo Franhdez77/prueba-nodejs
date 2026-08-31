@@ -6,6 +6,7 @@ const required = (name: string, fallback?: string): string => {
   return value;
 };
 
+/** Runtime configuration loaded from environment variables and normalized for application use. */
 export const env = {
   port: Number(process.env.PORT ?? 3000),
   databaseUrl: required('DATABASE_URL', 'postgres://postgres:postgres@localhost:5432/riwimedicare'),

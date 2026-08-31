@@ -16,6 +16,8 @@ app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.get('/api/docs.json', (_req, res) => res.json(swaggerSpec));
+
 app.use('/api', router);
 
 app.use((_req, res) => res.status(404).json({ message: 'Route not found' }));

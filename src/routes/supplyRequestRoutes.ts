@@ -10,8 +10,8 @@ const supplyRequestRoutes = Router();
  * /api/requests:
  *   post:
  *     tags: [Supply requests]
- *     summary: Crear una solicitud de abastecimiento
- *     description: Reserva el inventario dentro de una transacción. Disponible para ADMIN y MANAGER.
+ *     summary: Create a supply request
+ *     description: Reserves inventory in a transaction. Available to ADMIN and MANAGER users.
  *     security: [{ bearerAuth: [] }]
  *     requestBody:
  *       required: true
@@ -19,25 +19,25 @@ const supplyRequestRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/SupplyRequestInput' }
  *     responses:
- *       201: { description: Solicitud creada con estado PENDING }
- *       400: { description: Datos inválidos o cantidad no positiva }
- *       404: { description: Clínica, medicamento o almacén inexistente }
- *       409: { description: Inventario insuficiente }
+ *       201: { description: Request created with PENDING status }
+ *       400: { description: Invalid input or non-positive quantity }
+ *       404: { description: Clinic, medicine, or warehouse not found }
+ *       409: { description: Insufficient inventory }
  * /api/requests/active:
  *   get:
  *     tags: [Supply requests]
- *     summary: Consultar solicitudes activas
+ *     summary: List active requests
  *     security: [{ bearerAuth: [] }]
  *     responses:
- *       200: { description: Solicitudes PENDING, APPROVED o DISPATCHED }
+ *       200: { description: PENDING, APPROVED, or DISPATCHED requests }
  *       401: { $ref: '#/components/responses/Unauthorized' }
  * /api/requests/history:
  *   get:
  *     tags: [Supply requests]
- *     summary: Consultar el historial completo
+ *     summary: List the complete request history
  *     security: [{ bearerAuth: [] }]
  *     responses:
- *       200: { description: Historial ordenado desde la solicitud más reciente }
+ *       200: { description: History ordered from the most recent request }
  */
 
 /**
@@ -45,27 +45,27 @@ const supplyRequestRoutes = Router();
  * /api/requests/{id}:
  *   get:
  *     tags: [Supply requests]
- *     summary: Consultar una solicitud por id
+ *     summary: Get a request by ID
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       200: { description: Solicitud con sus asociaciones }
+ *       200: { description: Request with its associated resources }
  *       404: { $ref: '#/components/responses/NotFound' }
  *   delete:
  *     tags: [Supply requests]
- *     summary: Eliminar lógicamente una solicitud (ADMIN)
+ *     summary: Soft-delete a request (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       204: { description: Solicitud eliminada }
+ *       204: { description: Request deleted }
  *       403: { $ref: '#/components/responses/Forbidden' }
  * /api/requests/{id}/status:
  *   patch:
  *     tags: [Supply requests]
- *     summary: Actualizar el estado de una solicitud
- *     description: Solo permite transiciones válidas del flujo de negocio.
+ *     summary: Update a request status
+ *     description: Only valid business workflow transitions are allowed.
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
@@ -75,8 +75,8 @@ const supplyRequestRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/StatusInput' }
  *     responses:
- *       200: { description: Estado actualizado }
- *       400: { description: Estado o transición no permitida }
+ *       200: { description: Status updated }
+ *       400: { description: Invalid status or forbidden transition }
  *       404: { $ref: '#/components/responses/NotFound' }
  */
 supplyRequestRoutes.get('/active', asyncHandler(controller.listActive));

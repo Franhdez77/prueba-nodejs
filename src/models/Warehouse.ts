@@ -1,10 +1,12 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
 import { BaseAttributes } from './types';
+/** Persistent attributes of a medicine warehouse. */
 export interface WarehouseAttributes extends BaseAttributes {
   name: string;
   location: string;
 }
+/** Sequelize model mapped to the `warehouses` table. */
 export class Warehouse
   extends Model<WarehouseAttributes, Optional<WarehouseAttributes, 'id' | 'active'>>
   implements WarehouseAttributes

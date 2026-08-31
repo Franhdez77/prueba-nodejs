@@ -1,6 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
 import { BaseAttributes, RequestStatus } from './types';
+/** Persistent attributes of a medicine supply request. */
 export interface SupplyRequestAttributes extends BaseAttributes {
   clinicId: number;
   medicineId: number;
@@ -9,6 +10,7 @@ export interface SupplyRequestAttributes extends BaseAttributes {
   quantity: number;
   status: RequestStatus;
 }
+/** Sequelize model mapped to the `supply_requests` table. */
 export class SupplyRequest
   extends Model<
     SupplyRequestAttributes,

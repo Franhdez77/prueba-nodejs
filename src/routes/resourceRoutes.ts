@@ -10,14 +10,14 @@ const resourceRoutes = Router();
  * /api/clinics:
  *   get:
  *     tags: [Clinics]
- *     summary: Listar clínicas activas
+ *     summary: List active clinics
  *     security: [{ bearerAuth: [] }]
  *     responses:
- *       200: { description: Lista de clínicas }
+ *       200: { description: Clinic list }
  *       401: { $ref: '#/components/responses/Unauthorized' }
  *   post:
  *     tags: [Clinics]
- *     summary: Crear una clínica (ADMIN)
+ *     summary: Create a clinic (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     requestBody:
  *       required: true
@@ -25,21 +25,21 @@ const resourceRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/ClinicInput' }
  *     responses:
- *       201: { description: Clínica creada }
- *       409: { description: Ya existe una clínica con el mismo NIT }
+ *       201: { description: Clinic created }
+ *       409: { description: A clinic with the same NIT already exists }
  * /api/clinics/{id}:
  *   get:
  *     tags: [Clinics]
- *     summary: Consultar una clínica
+ *     summary: Get a clinic
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       200: { description: Clínica encontrada }
+ *       200: { description: Clinic found }
  *       404: { $ref: '#/components/responses/NotFound' }
  *   patch:
  *     tags: [Clinics]
- *     summary: Actualizar una clínica (ADMIN)
+ *     summary: Update a clinic (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
@@ -48,16 +48,16 @@ const resourceRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/ClinicInput' }
  *     responses:
- *       200: { description: Clínica actualizada }
+ *       200: { description: Clinic updated }
  *       403: { $ref: '#/components/responses/Forbidden' }
  *   delete:
  *     tags: [Clinics]
- *     summary: Eliminar lógicamente una clínica (ADMIN)
+ *     summary: Soft-delete a clinic (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       204: { description: Clínica eliminada }
+ *       204: { description: Clinic deleted }
  */
 
 /**
@@ -65,13 +65,13 @@ const resourceRoutes = Router();
  * /api/warehouses:
  *   get:
  *     tags: [Warehouses]
- *     summary: Listar almacenes activos
+ *     summary: List active warehouses
  *     security: [{ bearerAuth: [] }]
  *     responses:
- *       200: { description: Lista de almacenes }
+ *       200: { description: Warehouse list }
  *   post:
  *     tags: [Warehouses]
- *     summary: Crear un almacén (ADMIN)
+ *     summary: Create a warehouse (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     requestBody:
  *       required: true
@@ -79,21 +79,21 @@ const resourceRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/WarehouseInput' }
  *     responses:
- *       201: { description: Almacén creado }
+ *       201: { description: Warehouse created }
  *       403: { $ref: '#/components/responses/Forbidden' }
  * /api/warehouses/{id}:
  *   get:
  *     tags: [Warehouses]
- *     summary: Consultar un almacén
+ *     summary: Get a warehouse
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       200: { description: Almacén encontrado }
+ *       200: { description: Warehouse found }
  *       404: { $ref: '#/components/responses/NotFound' }
  *   patch:
  *     tags: [Warehouses]
- *     summary: Actualizar un almacén (ADMIN)
+ *     summary: Update a warehouse (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
@@ -102,15 +102,15 @@ const resourceRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/WarehouseInput' }
  *     responses:
- *       200: { description: Almacén actualizado }
+ *       200: { description: Warehouse updated }
  *   delete:
  *     tags: [Warehouses]
- *     summary: Eliminar lógicamente un almacén (ADMIN)
+ *     summary: Soft-delete a warehouse (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       204: { description: Almacén eliminado }
+ *       204: { description: Warehouse deleted }
  */
 
 /**
@@ -118,13 +118,13 @@ const resourceRoutes = Router();
  * /api/medicines:
  *   get:
  *     tags: [Medicines]
- *     summary: Listar medicamentos activos
+ *     summary: List active medicines
  *     security: [{ bearerAuth: [] }]
  *     responses:
- *       200: { description: Lista de medicamentos }
+ *       200: { description: Medicine list }
  *   post:
  *     tags: [Medicines]
- *     summary: Crear un medicamento (ADMIN)
+ *     summary: Create a medicine (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     requestBody:
  *       required: true
@@ -132,21 +132,21 @@ const resourceRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/MedicineInput' }
  *     responses:
- *       201: { description: Medicamento creado }
+ *       201: { description: Medicine created }
  *       403: { $ref: '#/components/responses/Forbidden' }
  * /api/medicines/{id}:
  *   get:
  *     tags: [Medicines]
- *     summary: Consultar un medicamento
+ *     summary: Get a medicine
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       200: { description: Medicamento encontrado }
+ *       200: { description: Medicine found }
  *       404: { $ref: '#/components/responses/NotFound' }
  *   patch:
  *     tags: [Medicines]
- *     summary: Actualizar un medicamento (ADMIN)
+ *     summary: Update a medicine (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
@@ -155,33 +155,33 @@ const resourceRoutes = Router();
  *         application/json:
  *           schema: { $ref: '#/components/schemas/MedicineInput' }
  *     responses:
- *       200: { description: Medicamento actualizado }
+ *       200: { description: Medicine updated }
  *   delete:
  *     tags: [Medicines]
- *     summary: Eliminar lógicamente un medicamento (ADMIN)
+ *     summary: Soft-delete a medicine (ADMIN)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
  *       - { in: path, name: id, required: true, schema: { type: integer } }
  *     responses:
- *       204: { description: Medicamento eliminado }
+ *       204: { description: Medicine deleted }
  */
 for (const [path, config] of Object.entries(controller.resources)) {
-  resourceRoutes.get(`/${path}`, asyncHandler(controller.list(config.model)));
-  resourceRoutes.get(`/${path}/:id`, asyncHandler(controller.getOne(config.model)));
+  resourceRoutes.get(`/${path}`, asyncHandler(controller.list(config.service)));
+  resourceRoutes.get(`/${path}/:id`, asyncHandler(controller.getOne(config.service)));
   resourceRoutes.post(
     `/${path}`,
     authorize('ADMIN'),
-    asyncHandler(controller.create(config.model, config.validator)),
+    asyncHandler(controller.create(config.service, config.validator)),
   );
   resourceRoutes.patch(
     `/${path}/:id`,
     authorize('ADMIN'),
-    asyncHandler(controller.update(config.model, config.validator)),
+    asyncHandler(controller.update(config.service, config.validator)),
   );
   resourceRoutes.delete(
     `/${path}/:id`,
     authorize('ADMIN'),
-    asyncHandler(controller.remove(config.model)),
+    asyncHandler(controller.remove(config.service)),
   );
 }
 

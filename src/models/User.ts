@@ -1,12 +1,14 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
 import { BaseAttributes, Role } from './types';
+/** Persistent attributes of an application user. */
 export interface UserAttributes extends BaseAttributes {
   name: string;
   email: string;
   password: string;
   role: Role;
 }
+/** Sequelize model mapped to the `users` table. */
 export class User
   extends Model<UserAttributes, Optional<UserAttributes, 'id' | 'active'>>
   implements UserAttributes

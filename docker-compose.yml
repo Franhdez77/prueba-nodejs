@@ -2,13 +2,13 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: riwimedicare
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres -d riwimedicare']
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
       interval: 5s
       timeout: 5s
       retries: 10
@@ -16,11 +16,12 @@ services:
   api:
     build: .
     environment:
-      PORT: 3000
-      DATABASE_URL: postgres://postgres:postgres@db:5432/riwimedicare
-      JWT_SECRET: ${JWT_SECRET:-local-docker-secret-change-me}
-      DB_SYNC: 'true'
-    ports: ['3000:3000']
+      PORT: ${PORT}
+      DATABASE_URL: ${DOCKER_DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      DB_SYNC: ${DB_SYNC}
+    ports: ['${PORT}:${PORT}']
     depends_on:
       db:
         condition: service_healthy
