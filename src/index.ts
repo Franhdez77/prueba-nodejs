@@ -1,9 +1,11 @@
 import cors from 'cors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from './config/swagger';
+import { swaggerSpec } from './docs/swagger';
 import { router } from './routes';
-import { errorHandler } from './utils/errors';
+import { errorHandler } from './errors/errorMiddleware';
+
+
 export const app = express();
 
 app.use(cors());
@@ -19,3 +21,4 @@ app.use('/api', router);
 app.use((_req, res) => res.status(404).json({ message: 'Route not found' }));
 
 app.use(errorHandler);
+

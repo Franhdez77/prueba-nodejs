@@ -1,4 +1,4 @@
-import { app } from './app';
+import { app } from './index';
 import { sequelize } from './config/database';
 import { env } from './config/env';
 
