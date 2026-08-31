@@ -1,0 +1,23 @@
+{
+  "users": [
+    { "name": "Admin Riwi", "email": "admin@riwi.io", "password": "Admin123!", "role": "ADMIN" },
+    {
+      "name": "Gestor Riwi",
+      "email": "gestor@riwi.io",
+      "password": "Gestor123!",
+      "role": "MANAGER"
+    }
+  ],
+  "clinics": [
+    {
+      "name": "Clínica Central",
+      "nit": "900123456-1",
+      "address": "Calle 10 #20-30",
+      "responsibleName": "Ana Pérez",
+      "responsiblePhone": "3001234567"
+    }
+  ],
+  "warehouses": [{ "name": "Almacén Norte", "location": "Medellín" }],
+  "medicines": [{ "name": "Acetaminofén 500mg", "sku": "MED-001", "description": "Tabletas" }],
+  "inventories": [{ "warehouseId": 1, "medicineId": 1, "quantity": 500 }]
+}

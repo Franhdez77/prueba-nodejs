@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
-import { BaseAttributes } from './types.js';
+import { BaseAttributes } from './types';
 
 export interface ClinicAttributes extends BaseAttributes {
   name: string;

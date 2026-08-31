@@ -4,7 +4,7 @@ import { env } from '../config/env';
 import { LoginDto } from '../dtos/auth/LoginDto';
 import { RegisterDto } from '../dtos/auth/RegisterDto';
 import { AppError } from '../errors/AppError';
-import { UserRepository } from '../repositories/UserRepository.js';
+import { UserRepository } from '../repositories/UserRepository';
 
 
 export class AuthService {
